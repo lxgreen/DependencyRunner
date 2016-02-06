@@ -6,7 +6,7 @@ The main goal of this project is Windows mechanisms study and application, and t
 
 This implementation involves the following Windows mechanisms:
 
-* I/O Completion Ports for fast file operations
+* I/O Completion Port for fast file operations
 * Memory mapping of PE headers for analysis
 * Thread Pools
 
@@ -41,3 +41,18 @@ The dependency search process starts from the _rootModule_ -- the one provided b
 	4. insert the _newPEModule_ to the _PEModuleRepository_
 
 Since the dependency search process is parallelized to multiple threads, the _PEModuleRepository_ has to be designed with concurrency considerations.
+
+### HELPER CLASSES
+#### IOCP
+The IOCP class provides RAII wrapper for I/O Completion Port. Every file reading operation is performed through an IOCP instance.
+This class ensures that the underlying I/O Completion Port is being freed in any case. Of course, it also provides the API for working with I/O Completion Port.
+
+#### PEHeader
+The PEHeader class provides high level access to the mapped PE header. Its responsibilities are:
+
+* memory mapping lifetime control
+* gain iterator access to the relevant PE header sections (ATM, these are: Imports, Exports, Delay Imports)
+* provide search methods -- find API by name or ordinal in Exports, etc
+
+#### Utils
+The Utils provides misc helper functions, e.g. working with strings, paths, logging, etc.
