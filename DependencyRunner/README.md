@@ -55,4 +55,4 @@ The PEHeader class provides high level access to the mapped PE header. Its respo
 * provide search methods -- find API by name or ordinal in Exports, etc
 
 #### Utils
-The Utils provides misc helper functions, e.g. working with strings, paths, logging, etc.
+The Utils class provides misc helper functions, e.g. working with strings, paths, logging, etc.
