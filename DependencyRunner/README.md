@@ -43,9 +43,8 @@ The dependency search process starts from the _rootModule_ -- the one provided b
 Since the dependency search process is parallelized to multiple threads, the _PEModuleRepository_ has to be designed with concurrency considerations.
 
 ### HELPER CLASSES
-#### IOCP
-The IOCP class provides RAII wrapper for I/O Completion Port. Every file reading operation is performed through an IOCP instance.
-This class ensures that the underlying I/O Completion Port is being freed in any case. Of course, it also provides the API for working with I/O Completion Port.
+#### FileReader
+This class encapsulates I/O related logic. It uses the thread pool API for working with I/O Completion Ports.
 
 #### PEHeader
 The PEHeader class provides high level access to the mapped PE header. Its responsibilities are:
